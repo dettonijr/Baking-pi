@@ -16,10 +16,10 @@ mov r1,#1
 lsl r1,#18          @ r1 = 2<<18 #3 bits/pin, we want the 6th pin.
 str r1,[r0,#4]      @ sets the 18th bit on 0x20200004
 
-loop$:
-/* This block of code turns the 16th pin off */
 mov r1,#1
 lsl r1,#16
+
+loop$:
 str r1,[r0,#40]     @sets the turn-off bit of 16th pin
 
 /* Waiting */
@@ -29,9 +29,6 @@ sub r2,#1
 cmp r2,#0
 bne wait1$
 
-/* This block of code turns the 16th pin on */
-mov r1,#1
-lsl r1,#16
 str r1,[r0,#28]     @sets the turn-on bit of 16th pin
 
 /* Waiting */
